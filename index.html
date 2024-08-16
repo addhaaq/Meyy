@@ -1,0 +1,130 @@
+<html><meta charset='UTF-8'/><meta content='width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=5' name='viewport'/><meta content='IE=edge' http-equiv='X-UA-Compatible'/><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap" rel="stylesheet"><script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+    
+<body>
+    
+    <div id="bodyblur"><img src="img.jpg" width="100%" height="100%"/></div>
+
+<!--ucapan-->
+
+  <script>
+        document.write("<center>");
+          var hari = new Date();
+          var jam = hari.getHours();
+          if (jam >= 0 && jam < 12) {
+            document.write(
+              "<h1 class='ucapan'>Selamat Pagi Meyy!</h1><p class='isiucapan'>Semangat ya aktifitasnya hari ini... <3</p>"
+            );
+          } else if (jam >= 12 && jam < 15) {
+            document.write(
+              "<h1 class='ucapan'>Selamat Siang Sayang!</h1><p class='isiucapan'>Jangan Lupa lupa bahagia yaa, always keep smile.. </p>"
+            );
+          } else if (jam >= 15 && jam <= 17) {
+            document.write(
+              "<h1 class='ucapan'>Sore Sayy!!<p id='jam'></p></h1><p class='isiucapan'>Jangan lupa simpan cerita aktifitasmu hari ini, ceritakan padaku nanti <3<p>"
+            );
+          } else {
+            document.write(
+              "<h1 class='ucapan'>Malem Sayy!!<p id='jam'></p></h1><p class='isiucapan'>Selamat beristirahat dan selamat tidur. kabari aku disetiap kegiatanmu. <3</p>"
+            );
+          }
+          document.write("</center>");
+    </script>
+
+<!-- Isi Konten -->
+    <div id='Content'>
+<div class="image">
+    <img id="idmail" src="https://bucindreams.github.io/envelope.png" onClick='showAkhir();play();this.onclick=null;'/></div>
+        
+<!-- Gambar Bergerak --><div class="image"><img id="idfoto" src="https://bucindreams.github.io/bwa2.gif"/></div><!--<div id="sp1"></div>-->
+<p id="idgeser">Klik Suratnya!</p>
+
+<div id="idakhir">
+  
+</div><div id="idakhirdua"></div>
+<p id="idkirim" onClick="menuju();">[ Klik for Whatsapp ]</p>
+</div>
+
+<script>
+    
+     function showDiv() {document.getElementById('idmail').style = "opacity:1;transform:scale(1);";document.getElementById('Content').style.opacity = "1";document.getElementById('Content').style.margin = "0";document.getElementById('idfoto').style.height = "0px";} 
+    
+    function nonDiv() {document.getElementById('Content').style.display = "none";}
+    
+     function showAkhir() {document.getElementById('idmail').style = "transform:scale(.01);opacity:0;";document.getElementById('idgeser').style.display = "none";setTimeout(mulai, 200);}
+    
+     function memulai() {ketik();
+                         document.getElementById('idmail').style.display = "none";
+                         document.getElementById('idakhir').style = "opacity:1;";
+                         document.getElementById('idakhir').style.animation = "kont 3s infinite";
+                         document.getElementById('idfoto').style.height = "150px";}
+     
+     var i=0,katakhir;
+    katakhir = "";
+    
+     function ketik() {if(i<katakhir.length){document.getElementById("idakhir").innerHTML += katakhir.charAt(i);i++;setTimeout(ketik,100);}
+       if(i==katakhir.length){ketikk();document.getElementById('idakhirdua').style = "opacity:1;animation:kont 3s infinite;";}
+     }
+     var u=0,katakhirdua;katakhirdua = "";
+     function ketikk() {if(u<katakhirdua.length){document.getElementById("idakhirdua").innerHTML += katakhirdua.charAt(u);u++;setTimeout(ketikk,200);}
+       if(u==katakhirdua.length){document.getElementById("idakhirdua").innerHTML = katakhirdua + emotsenyum;document.getElementById('idkirim').style = "opacity:1;visibility:visible;margin-top:90px;";document.getElementById('idfoto').style = "opacity:1;transform:scale(1);";}
+     }
+</script>
+
+<!-- Kata Akhir dan Audio -->
+    <script type="text/javascript">
+function play() {var audio = new 
+Audio('bukti.mp3');audio.play();}
+
+      const swals = Swal.mixin({backdrop: 'rgba(0,0,123,0.4)', allowOutsideClick: false, cancelButtonColor: '#FF0040',});
+      const swalsy = Swal.mixin({confirmButtonText: 'Iya', allowOutsideClick: false,});
+      const swalst = Swal.mixin({allowOutsideClick: false, showConfirmButton: false, timer: 1500, timerProgressBar: true,});
+            
+      async function mulaipop(){
+    	await swalst.fire({
+           title: 'Tunggu sebentar yaa~',
+           });
+                          
+           showDiv();
+           
+       }  
+        mulaipop();
+       
+       async function mulai(){
+                var { value: nama } = await swals.fire({
+                    title: 'Masukin nama kamu',
+                    input: 'text',
+                    imageUrl: 'https://bucindreams.github.io/bunga.gif', imageWidth: 120, imageHeight: 120,
+                    allowOutsideClick: false,
+                    showCancelButton: false,
+                });
+                if(nama && nama.length >= 5) {
+                	window.nama = nama;
+                    setTimeout(memulai, 400);
+                    emotsenyum = "&#128518;";
+                    katakhir = "Hai, " + nama + "! ";
+                    katakhirdua = "Nama kamu cuma " + nama.length + " huruf, tapi menuhin pikiranku terus ❤️      ";
+                } else {
+                    await swals.fire('Ups!', 'Namanya wajib merry ya aku gak mau yang lain!!');
+                    mulai();
+                }
+            }
+       
+function menuju(){window.location = "https://api.whatsapp.com/send?phone=&text=love you ❤️❤️><";}
+</script>
+  <script>
+    document.getElementById("jam").innerHTML = formatAMPM();
+
+    function formatAMPM() {
+      var jamsaiki = new Date(),
+        menit = jamsaiki.getMinutes().toString().length == 1 ? '0' + jamsaiki.getMinutes() : jamsaiki.getMinutes(),
+        jam = jamsaiki.getHours().toString().length == 1 ? '0' + jamsaiki.getHours() : jamsaiki.getHours(),
+        ampm = jamsaiki.getHours() >= 12 ? 'WIB' : 'WIB';
+      return jam + ':' +
+        menit + ' ' + ampm;
+    };
+  </script>
+</body>
+</html>
